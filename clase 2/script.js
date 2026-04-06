@@ -266,3 +266,14 @@ function dividirNumeros(a, b){
 }
 
 console.log(dividirNumeros(2, 8));
+
+// Ejercicios de tabla de la verdad
+let precio = 60000;
+let esPremium = false;
+
+if (precio > 50000 || esPremium) {
+    console.log("Este producto tiene envío gratis");
+} else {
+    console.log("Debe abonar el costo de envío");
+}
+
