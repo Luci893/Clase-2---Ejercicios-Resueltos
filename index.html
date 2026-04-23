@@ -47,10 +47,9 @@
         <li>rojo</li>
         <li>verde</li>
         <li>azul</li>
-     </ol> -->
-
-     <!-- CLASE 4 -->
-    <!-- 1. click -->
+     </ol> 
+     
+     1. click 
     <section>
         <h2>1. Evento click</h2>
         <button id="btnClick">Haz clic aquí</button>
@@ -62,7 +61,7 @@
         </script>
     </section>
 
-    <!-- 2. dblclick -->
+     2. dblclick
     <section>
         <h2>2. Evento dblclick</h2>
         <button id="btnDblClick">Doble clic aquí</button>
@@ -74,7 +73,7 @@
         </script>
     </section>
 
-    <!-- 3. mouseover -->
+    3. mouseover
     <section>
         <h2>3. Evento mouseover</h2>
         <div id="boxHover" style="padding:20px;border:1px solid #000;">Pasa el mouse por aquí</div>
@@ -90,7 +89,7 @@
         </script>
     </section>
 
-    <!-- 4. keydown -->
+    4. keydown
     <section>
         <h2>4. Evento keydown</h2>
         <input type="text" id="inputKeydown" placeholder="Presiona una tecla">
@@ -102,7 +101,7 @@
         </script>
     </section>
 
-    <!-- 5. keyup -->
+    5. keyup 
     <section>
         <h2>5. Evento keyup</h2>
         <input type="text" id="inputKeyup" placeholder="Escribe algo y suelta la tecla">
@@ -114,7 +113,7 @@
         </script>
     </section>
 
-    <!-- 6. input -->
+    6. input
     <section>
         <h2>6. Evento input</h2>
         <input type="text" id="inputRealTime" placeholder="Escribe aquí">
@@ -127,7 +126,7 @@
         </script>
     </section>
 
-    <!-- 7. change -->
+     7. change
     <section>
         <h2>7. Evento change</h2>
         <select id="selectChange">
@@ -144,7 +143,7 @@
         </script>
     </section>
 
-    <!-- 8. submit -->
+     8. submit>
     <section>
         <h2>8. Evento submit</h2>
         <form id="formSubmit">
@@ -160,7 +159,7 @@
         </script>
     </section>
 
-    <!-- 9. load -->
+     9. load 
     <section>
         <h2>9. Evento load</h2>
         <p id="msgLoad">Cargando...</p>
@@ -172,7 +171,7 @@
         </script>
     </section>
 
-    <!-- 10. scroll -->
+     10. scroll 
     <section>
         <h2>10. Evento scroll</h2>
         <div id="scrollBox" style="height:100px; overflow-y:scroll; border:1px solid #000; padding:5px;">
@@ -193,7 +192,7 @@
         </script>
     </section>
 
-    <!-- 11. resize -->
+     11. resize
     <section>
         <h2>11. Evento resize</h2>
         <p id="sizeOutput"></p>
@@ -208,7 +207,7 @@
         </script>
     </section>
 
-    <!-- 12. contextmenu -->
+    12. contextmenu 
     <section>
         <h2>12. Evento contextmenu</h2>
         <div id="rightClickBox" style="padding:20px;border:1px solid #000;">Haz clic derecho aquí</div>
@@ -221,7 +220,7 @@
         </script>
     </section>
 
-    <!-- 13. focus -->
+     13. focus 
     <section>
         <h2>13. Evento focus</h2>
         <input type="text" id="inputFocus" placeholder="Haz clic aquí">
@@ -233,7 +232,7 @@
         </script>
     </section>
 
-    <!-- 14. blur -->
+     14. blur 
     <section>
         <h2>14. Evento blur</h2>
         <input type="text" id="inputBlur" placeholder="Haz clic y luego fuera">
@@ -241,12 +240,12 @@
         // Cambia fondo al perder foco
         const inputBlur = document.getElementById('inputBlur');
         inputBlur.addEventListener('blur', function() {
-            this.style.backgroundColor = '';
+            this.style.backgroundColor = 'red';
         });
         </script>
     </section>
 
-    <!-- 15. drag & drop -->
+    15. drag & drop 
     <section>
         <h2>15. Evento drag & drop</h2>
         <div id="dragBox" draggable="true" style="padding:20px;border:1px solid #000; display:inline-block;">Arrástrame</div>
@@ -274,36 +273,39 @@
     </section>
 
     <br>
-    <br>
+    <br> -->
 
-    <!--Formulario-->
+    Formulario
     <form id="Formulario">
+        <h1>Contáctanos</h1>
         <div id="contenedor1">
             <div class="mb-3">
-                <label id="email" for="exampleInputEmail1" class="form-label">Email</label>
-                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Ingresa tu Email">
-                <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                <input type="text" class="form-control" id="exampleInputNombre" placeholder="Nombre">
+                <input type="text" class="form-control" id="exampleInputApellido" placeholder="Apellido">
+                <input type="date" name="" id="">
             </div>
         </div>
         
         <div id="contenedor2">
             <div class="mb-3">
-                <label id="contrasenia" for="exampleInputPassword1" class="form-label">Password</label>
-                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Ingresa tu contraseña">
+                <label id="email" for="inputEmail">Email: </label>
+                <input type="email" class="form-control" id="inputEmail" placeholder="Email"> 
+                <p id="salidaEmail"></p>
             </div>
         </div>
         
         <div id="contenedor3">
             <div id="contSub" class="mb-3 form-check">
-                <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                
             </div>
         </div>
-    <button type="submit" class="btn btn-primary" id="button">Submit</button>
+    <button type="submit" class="btn btn-primary col-6" id="button">Submit</button>
+    <button type="reset" class="buttonLimpiar">Limpiar</button>
     </form>
 
-    <br>
+    <br> 
 
+    <!-- Agregado para ejercitación --> 
     <h3 id="textoList" class=" fondoGris">Esto es una lista:</h3>
     <ul class="lista1">
         <li class="elem">Arroz</li>
@@ -311,9 +313,14 @@
         <li class="elem">Huevo</li>
     </ul>
     
-    <p id="parrafo1">Esto es un párrafo</p>
+    <p id="parrafo">Esto es un párrafo</p>
     <button id="btnOcultar" class="btn">Ocultar Parrafo</button>
 
-    <script src="/clase 4/script.js"></script>
+    <p id="parrafo1">Soy el parrafo 1</p>
+    <p id="parrafo2">Soy el parrafo 2</p> 
+
+    <button id="miBoton" class="btn"><a href="miniProyectos/proyecto1.html">Haz clic para ir a otra página</a></button>
+
+    <script src="/clase 3/script.js"></script>
 </body>
 </html>
