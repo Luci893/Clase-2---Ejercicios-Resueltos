@@ -104,9 +104,9 @@ botonOcultar.addEventListener('click', function(){
 });
 
 // 10. Agrega un nuevo elemento HTML a un contenedor existente.
-/* const divModificar = document.getElementById("contenedor1");
-divModificar.innerHTML = '<input type="date" class="form-control" id="exampleInputFecha">';
-document.body.appendChild(divModificar);*/
+const divModificar = document.getElementById("subCont1");
+divModificar.innerHTML += '<input type="date" class="form-control" id="exampleInputFecha">';
+
 
 /* PRACTICA EN CLASE - OBJETOS Y ARREGLOS
 // Objetos
@@ -208,3 +208,75 @@ const productosBaratos = arregloProductos.filter(function(producto){
     return producto.precio < 2000;
 });
 console.log(productosBaratos);
+
+/* ACTIVIDAD PRÁCTICA - TERCERA PARTE: */
+
+//1. Crea un arreglo con 5 números y muestra el tercero en consola
+let arrNumeros = [4,5,6,7,8];
+elem3 = arrNumeros[2];
+console.log(`El tercer elemento del array es: ${elem3}`);
+
+//2. Agrega un nuevo elemento a un arreglo usando push.
+const arrUtiles = ["lápiz", "goma", "lapicera"];
+console.log(arrUtiles);
+arrUtiles.push("corrector");
+console.log(`Arreglo luego de agregar un elemento con push [${arrUtiles}]`);
+
+//3. Elimina el último elemento de un arreglo y muéstralo en consola.
+arrNumeros.pop();
+console.log(`Arreglo luego de eliminar un elemento con pop [${arrNumeros}]`);
+
+// 4. Usa map para multiplicar por 2 cada número de un arreglo.
+const arrNumeros2 = [4, 5, 6];
+const numDoblados = arrNumeros2.map(function(numero){
+    return numero * 2;
+});
+console.log(`Arreglo luego de multiplicar cada elemento * 2: [${numDoblados}]`);
+
+// 5. Filtra un arreglo para obtener solo los números mayores a 10.
+const arrNumeros3 = [6, 9, 12, 11, 4];
+const numMayores = arrNumeros3.filter(function(numero){
+    return numero > 10;
+});
+console.log(`Arreglo de números mayores a 10: [${numMayores}]`);
+
+// 6. Declara un objeto con las propiedades nombre, edad, y profesión.
+const persona = {nombre: "Erica", edad: 25, profesion: "Traumatóloga"};
+console.log(persona);
+
+// 7. Accede y muestra el valor de una propiedad de un objeto.
+console.log("La edad de la persona es: ", persona.edad);
+
+// 8. Agrega un método a un objeto que devuelva un saludo personalizado.
+persona.saludar = function(){
+    return `Hola, mi nombre es ${this.nombre} y son ${this.profesion}`;
+}
+console.log(persona.saludar())
+
+//9. Usa reduce para sumar todos los números de un arreglo.
+const arrNumeros4 = [1, 2, 3, 4];
+const sumados = arrNumeros4.reduce(function(acumulador, numero){
+    return acumulador + numero;
+},0); 
+console.log(`La suma de los números del arreglo [${arrNumeros4}] es ${sumados}`);
+
+// 10. Combina arreglos y objetos: Crea un arreglo de objetos y recórrelo para mostrar el nombre de cada elemento.
+const arregloFrutas = [
+    {   nombre: "Manzana",
+        precioKl: 1000,
+        cantidad: 20
+    },
+    {   nombre: "Banana",
+        precioKl: 1800,
+        cantidad: 30
+    },
+    {   nombre: "Sandia",
+        precioKl: 2000,
+        cantidad: 25
+    }
+];
+console.log(arregloFrutas);
+
+arregloFrutas.forEach(function(fruta){
+    console.log(fruta.nombre);
+});
