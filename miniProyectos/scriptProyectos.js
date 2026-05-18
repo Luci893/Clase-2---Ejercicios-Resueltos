@@ -8,16 +8,21 @@ let operacion = prompt("Ingrese la operación(+,-,*,/): ");
 let resultado;
 
 // Estructura condicional
-if(operacion === "+"){
-    resultado = numero1 + numero2;
-}else if(operacion === "-"){
-    resultado = numero1 - numero2;
-}else if(operacion === "*"){
-    resultado = numero1 * numero2;
-}else if(operacion === "/"){
-    resultado = numero2 !== 0 ? numero1 / numero2: "Error: división por cero";
+if(!isNaN(numero1) && !isNaN(numero2)){
+    if(operacion === "+"){
+        resultado = numero1 + numero2;
+    }else if(operacion === "-"){
+        resultado = numero1 - numero2;
+    }else if(operacion === "*"){
+        resultado = numero1 * numero2;
+    }else if(operacion === "/"){
+        resultado = numero2 !== 0 ? numero1 / numero2: "Error: división por cero";
+    }else{
+        resultado = "Operación no válida";
+    }
 }else{
-    resultado = "Operación no válida";
+    resultado = "Error: uno o ambos valores no son números válidos";
 }
 
 console.log(`Resultado ${resultado}`);
+
