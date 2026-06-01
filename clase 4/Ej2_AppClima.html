@@ -1,0 +1,219 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>App del Clima - Provincias</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to top, #00aaff, #004466);
+            color: white;
+            margin: 0;
+            padding: 0;
+        }
+
+        .contenedor {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 24px;
+        }
+
+        h1 {
+            margin-bottom: 8px;
+        }
+
+        .panel {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 18px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            margin-bottom: 24px;
+        }
+
+        input, button {
+            padding: 12px 14px;
+            margin: 8px 4px;
+            border-radius: 8px;
+            border: none;
+            font-size: 1rem;
+        }
+
+        input {
+            width: 220px;
+            max-width: 100%;
+        }
+
+        button {
+            background: #00c1ff;
+            color: #00334d;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #04a2dd;
+        }
+
+        #resultado {
+            margin-top: 16px;
+            text-align: left;
+            background: rgba(255,255,255,0.12);
+            border-radius: 12px;
+            padding: 16px;
+            min-height: 120px;
+        }
+
+        #map {
+            height: 520px;
+            border-radius: 16px;
+            overflow: hidden;
+            margin-bottom: 24px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+        }
+
+        #alertas {
+            background: rgba(255,255,255,0.12);
+            border-radius: 12px;
+            padding: 16px;
+            white-space: pre-line;
+            margin-bottom: 24px;
+        }
+
+        #radarMeta {
+            background: rgba(255,255,255,0.08);
+            border-radius: 12px;
+            padding: 14px 16px;
+            margin-bottom: 18px;
+            color: #eef6ff;
+        }
+
+        #radarLegend {
+            background: rgba(255,255,255,0.08);
+            border-radius: 12px;
+            padding: 14px 16px;
+            margin-bottom: 24px;
+        }
+
+        .legend-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 6px 0;
+            color: #eef6ff;
+        }
+
+        .legend-color {
+            width: 32px;
+            height: 18px;
+            border-radius: 4px;
+            border: 1px solid rgba(255,255,255,0.35);
+        }
+
+        .dbz-1 { background: #4a9fff; }
+        .dbz-2 { background: #33ccff; }
+        .dbz-3 { background: #a7ff4f; }
+        .dbz-4 { background: #ffff00; }
+        .dbz-5 { background: #ff9b00; }
+        .dbz-6 { background: #ff0000; }
+        .dbz-7 { background: #8b00ff; }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 40px;
+            background: rgba(255,255,255,0.12);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        th, td {
+            padding: 12px 14px;
+            border-bottom: 1px solid rgba(255,255,255,0.12);
+            color: white;
+        }
+
+        th {
+            background: rgba(0, 51, 77, 0.9);
+            font-weight: 600;
+        }
+
+        tr:nth-child(even) {
+            background: rgba(255,255,255,0.08);
+        }
+
+        .small-note {
+            color: #e8f7ff;
+            opacity: 0.85;
+            margin-top: 8px;
+        }
+
+        @media (max-width: 760px) {
+            input, button {
+                width: 100%;
+                box-sizing: border-box;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="contenedor">
+        <header>
+            <h1>App del Clima + Provincias</h1>
+            <p>Busca el clima de una ciudad y explora las provincias argentinas con contingencias en tiempo real.</p>
+        </header>
+
+        <div class="panel">
+            <h2>Búsqueda de ciudad</h2>
+            <input type="text" id="ciudad" placeholder="Ingrese una ciudad">
+            <button id="buscar">Buscar</button>
+            <div id="resultado"></div>
+        </div>
+
+        <div class="panel">
+            <h2>Mapa de provincias</h2>
+            <div id="map"></div>
+            <div id="alertas">
+                <strong>Contingencias:</strong>
+                <p id="alertaTexto">Haz clic en un marcador para ver alertas climáticas reales de la provincia.</p>
+                <p class="small-note">Para ver contingencias reales necesitas tu API key de OpenWeather en el script.</p>
+            </div>
+            <div id="radarMeta">
+                <p id="radarHora">Actualizando radar...</p>
+                <p class="small-note">Las manchas en Mendoza muestran la intensidad de las nubes en DBZ. No se tienen en cuenta los ecos fijos de montaña a la izquierda de la imagen.</p>
+                <p class="small-note">Los contornos con línea azul marcan áreas cultivadas en el Norte, Centro (Valle de Uco) y Sur de Mendoza.</p>
+            </div>
+            <div id="radarLegend">
+                <strong>Leyenda de DBZ</strong>
+                <div class="legend-row"><span class="legend-color dbz-1"></span><span>0-5 dBZ (nubes muy débiles)</span></div>
+                <div class="legend-row"><span class="legend-color dbz-2"></span><span>10-15 dBZ (llovizna ligera)</span></div>
+                <div class="legend-row"><span class="legend-color dbz-3"></span><span>20-30 dBZ (nubes moderadas)</span></div>
+                <div class="legend-row"><span class="legend-color dbz-4"></span><span>35-40 dBZ (lluvia fuerte)</span></div>
+                <div class="legend-row"><span class="legend-color dbz-5"></span><span>45-50 dBZ (tormenta intensa)</span></div>
+                <div class="legend-row"><span class="legend-color dbz-6"></span><span>55-60 dBZ (muy intensa, posible granizo)</span></div>
+                <div class="legend-row"><span class="legend-color dbz-7"></span><span>65+ dBZ (eco extremo)</span></div>
+            </div>
+            <table id="tablaProvincias">
+                <thead>
+                    <tr>
+                        <th>Provincia / CABA</th>
+                        <th>Capital</th>
+                        <th>Zona</th>
+                        <th>Superficie (km²)</th>
+                        <th>Población aprox.</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
