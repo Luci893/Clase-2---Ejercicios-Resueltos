@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Buscador de Usuarios GitHub</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>🔎 Buscador de usuarios GitHub</h1>
+
+        <div class="search-panel">
+            <input type="text" id="usuario" placeholder="Escribe un nombre de usuario de GitHub" autocomplete="off" />
+            <button id="buscar">Buscar</button>
+        </div>
+
+        <div id="resultado">
+            <div class="message">Busca un usuario como <strong>octocat</strong> y verás su perfil, estadísticas y repositorios recientes.</div>
+        </div>
+
+        <div class="footer">* La API de GitHub es pública y puede tener límite de consultas. Si no carga, prueba de nuevo en unos minutos.</div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
