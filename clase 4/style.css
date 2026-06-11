@@ -1,5 +1,5 @@
 
-/* ESTILOS EJERCICIO 13 */
+/* ESTILOS EJERCICIO 13 
 :root {
             --bg: #08121f;
             --card: #112039;
@@ -309,3 +309,30 @@
                 min-width: unset;
             }
         }
+*/
+
+/* ESTILOS EJERCICIO 14 */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #fafafa;
+    text-align: center;
+    padding: 50px;
+}
+
+textarea{
+    width: 300px;
+    height: 100px;
+    margin: 10px;
+}
+
+button {
+    padding: 10px 20px;
+    margin: 5px;
+    cursor: pointer;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    background-color: green;
+}
